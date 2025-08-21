@@ -46,3 +46,11 @@ terraform apply
 - Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
 
 ---
+
+### 📝 Licencia
+
+Este repositorio está disponible bajo la licencia MIT.  
+Puedes usar, modificar y compartir libremente el contenido, incluso con fines comerciales.  
+Consulta el archivo [`LICENSE`](./LICENSE) para más detalles.
+
+---

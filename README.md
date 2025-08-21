@@ -36,8 +36,8 @@ terraform apply
 ## 📝 Notas de aprendizaje
 - Cada cambio importante se documenta en `learning/`.
 - `week01.md`, `week02.md`, etc.: registro de avances semanales.
-- `experiments/`: scripts de prueba que no entran en el repo oficial.
-- `cheatsheets/`: comandos útiles y mini-guías para referencia rápida.
+- `learning/experiments/`: scripts de prueba que no entran en el repo oficial.
+- `learning/cheatsheets/`: comandos útiles y mini-guías para referencia rápida.
 
 ---
 

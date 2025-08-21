@@ -16,6 +16,10 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 - Explorar cómo conectar Lambda con **IAM Roles** y permisos.
 - Documentar errores y soluciones encontradas durante las pruebas.
 
+## Descripción del proyecto
+- El ejemplo de uso de AWS Lambda que tiene una función que al ser invocada, ejecuta un código y devuelve un resultado.
+- Este patrón se conoce como **invocación síncrona** y no requiere la integración de otros servicios complejos. A menudo se usa para tareas simples como probar un código o realizar un cálculo rápido.
+
 ---
 
 ## ⚡ Uso / notas

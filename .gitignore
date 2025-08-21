@@ -39,7 +39,7 @@ terraform.rc
 terraform
 
 # MacOS - specific storage files #
-#################################
+##################################
 .DS_Store
 .DS_Store?
 ._*
@@ -51,7 +51,7 @@ Thumbs.db
 .LSOverride
 
 # MacOS - Files that might appear in the root of a volume #
-#########################################################
+###########################################################
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100

@@ -52,10 +52,8 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 ---
 
 ## 📌 Notas
-> Este repo es **experimental**, no es un proyecto oficial de CyberNuclei.
-
-> Se recomienda romper cosas y aprender de los errores 😎
-
+> Este repo es **experimental**, no es un proyecto oficial de CyberNuclei.<br>
+> Se recomienda romper cosas y aprender de los errores 😎<br>
 > Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
 
 ---

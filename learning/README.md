@@ -8,12 +8,11 @@
 ## 🔥 Week 01 <a name="week-01"></a>
 
 ### Índice Week 01
-- [⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#modificar-tftpl)
+- [¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#modificar-tftpl)
 - [Si el JSON de tu política no necesita reemplazo de variables](#json-sin-reemplazo)
 - [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-arn-vs-propia)
 - [Entendiendo Rol y política](#entendiendo-rol-politica)
 - [Diagrama de flujo para una Lambda invocada vía API Gateway](#diagrama-lambda-apigateway)
-
 - [Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch](#diagrama-roles-iam-cloudwatch)
 - [Diagrama en donde los pasos de IAM y CloudWatch se detallen](#diagrama-pasos-iam-cloudwatch)
 - [Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API)](#integracion-lambda-api-gateway)

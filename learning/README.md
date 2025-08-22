@@ -2,7 +2,7 @@
 
 ## 🔥 Week 01
 
-## Índice Week 01
+### Índice Week 01
 - [¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#qué-pasa-si-solo-modifico-el-archivo-.tftpl-y-ejecuto-terraform-apply)
 - [Si el JSON de tu política no necesita reemplazo de variables](#si-el-JSON-de-tu-política-no-necesita-reemplazo-de-variables)
 - [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-enTerraformentreusar-un-arn-de-política-administrada-por-AWS-y-crear-tu-propia-política-json)

@@ -52,6 +52,11 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 ---
 
 ## 🛠️ Pasos de creción de Lab
+### 1.Inicio de sesión con AWS SSO en la CLI
+- Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el navegador para autenticarte y guarda credenciales temporales.
+    ```bash
+    aws sso login --profile tf
+    ```
 ### 1. Código de la función Lambda
 - El código es simple, escrito en **Python** (uno de los lenguajes más comunes para Lambda).
 - La función recibe un evento (un diccionario) y un contexto de ejecución.
@@ -74,6 +79,16 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 ---
 
 ## 🚀 Probar el funcionamiento del laboratorio (Outcome)
+### 1. Inicio de sesión con AWS SSO en la CLI
+Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el navegador para autenticarte y guarda credenciales temporales.
+    ```bash
+    aws sso login --profile tf
+    ```
+### 2. Ejecución de terraform init
+
+
+
+
 ### Invocación con cURL
 - Una vez desplegado (terraform apply), copia la URL del output:
     ```bash

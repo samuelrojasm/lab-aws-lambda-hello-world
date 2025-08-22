@@ -1,3 +1,9 @@
+# ===============================================================================================
+# Lab:      API Gateway + Lambda
+# Objetivo: Recursos del API Gateway (Crea un HTTP API que invoque Lambda)
+# Incluye:  Lambda, API Gateway HTTP, Integración API + Lambda y permisos de invocación de Lambda
+# ===============================================================================================
+
 # -----------------------------
 # === IAM: Rol y políticas ===
 # -----------------------------

@@ -3,6 +3,15 @@
 ## 🔥 Week 01
 
 ### Índice Week 01
+- [⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#modificar-tftpl)
+- [Si el JSON de tu política no necesita reemplazo de variables](#json-sin-reemplazo)
+- [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-arn-vs-propia)
+- [Entendiendo Rol y política](#entendiendo-rol-politica)
+- [Diagrama de flujo para una Lambda invocada vía API Gateway](#diagrama-lambda-apigateway)
+
+
+
+
 - [⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#qué-pasa-si-solo-modifico-el-archivo-tftpl-y-ejecuto-terraform-apply)
 - [Si el JSON de tu política no necesita reemplazo de variables](#si-el-json-de-tu-política-no-necesita-reemplazo-de-variables)
 - [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-en-Terraform-entre-usar-un-arn-de-política-administrada-por-aws-y-crear-tu-propia-política-json)
@@ -13,14 +22,14 @@
 - [Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API).]()
 - [Auto deploy en Stage de API Gateway]()
 - [Casos de uso de auto_deploy = false]()
-- [CORS - Cross-Origin Resource Sharing]()
+- [CORS - Cross-Origin Resource Sharing](#cors-cross-origin-resource-sharing)
 - []()
 - []()
 - []()
 
 ---
 
-### ⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?
+### ⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply? <a name="modificar-tftpl"></a>
 - Cuando trabajas con `templatefile() + .tftpl`, Terraform genera el JSON en tiempo de ejecución antes de aplicar cambios.
 - Si modificas solo el archivo `.tftpl` y no cambias nada más en el .tf, Terraform detectará un cambio en la política generada.
 - Durante `terraform plan`, verás que la política IAM (aws_iam_policy, aws_iam_role_policy, etc.) tiene un diff porque el JSON resultante cambió.

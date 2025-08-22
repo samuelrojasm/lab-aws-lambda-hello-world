@@ -8,9 +8,9 @@
 - Durante `terraform plan`, verás que la política IAM (aws_iam_policy, aws_iam_role_policy, etc.) tiene un diff porque el JSON resultante cambió.
 - Al hacer `terraform apply`, Terraform actualizará ese recurso en AWS con la nueva versión de la política.
 - ⚠️ Importante
-- Terraform no versiona el `.tftpl`, solo compara el resultado renderizado con lo que está aplicado en AWS.
-- Si los cambios en el `.tftpl` son equivalentes semánticamente (ejemplo: cambiar orden de claves JSON pero sin modificar permisos), AWS IAM a veces considera que no hubo cambio. Sin embargo, Terraform puede seguir mostrando diffs si la cadena generada no coincide byte a byte.
-- En prácticas profesionales, se suele usar `terraform plan` primero para revisar qué impacto tendrá antes de hacer apply.
+    - Terraform no versiona el `.tftpl`, solo compara el resultado renderizado con lo que está aplicado en AWS.
+    - Si los cambios en el `.tftpl` son equivalentes semánticamente (ejemplo: cambiar orden de claves JSON pero sin modificar permisos), AWS IAM a veces considera que no hubo cambio. Sin embargo, Terraform puede seguir mostrando diffs si la cadena generada no coincide byte a byte.
+    - En prácticas profesionales, se suele usar `terraform plan` primero para revisar qué impacto tendrá antes de hacer apply.
 
 #### 🔗 Referencias templatefile()
 - [templatefile Function](https://developer.hashicorp.com/terraform/language/functions/templatefile)

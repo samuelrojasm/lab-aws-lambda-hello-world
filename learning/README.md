@@ -217,9 +217,9 @@ flowchart TD
     M --> N[API Gateway envia respuesta al usuario]
 
     %% Estilos para resaltar
-    style F fill:#f9f,stroke:#333,stroke-width:2px
-    style G fill:#bbf,stroke:#333,stroke-width:2px
-    style K fill:#ff9,stroke:#333,stroke-width:2px
+    style F fill:#d4b5d8,stroke:#333,stroke-width:1px,color:black
+    style G fill:#b5cbe0,stroke:#333,stroke-width:1px,color:black
+    style K fill:#f7e3a1,stroke:#333,stroke-width:1px,color:black
 ```
 
 📌 **Cómo leerlo:**

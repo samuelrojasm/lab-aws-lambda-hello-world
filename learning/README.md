@@ -141,7 +141,7 @@ flowchart TD
     A[Usuario hace solicitud HTTP] --> B[API Gateway recibe la petición]
 
     %% Validación y autorización
-    B --> C[API Gateway verifica autorización (IAM o Cognito)]
+    B --> C[API Gateway verifica autorización IAM o Cognito]
     C --> D{¿Autorizado?}
     D -- No --> I[API Gateway devuelve error 403 al usuario]
     D -- Sí --> E[API Gateway invoca Lambda]
@@ -162,7 +162,6 @@ flowchart TD
     style F fill:#f9f,stroke:#333,stroke-width:2px
     style H fill:#ff9,stroke:#333,stroke-width:2px
 ```
-
 
 ---
 

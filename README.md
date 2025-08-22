@@ -73,7 +73,7 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ---
 
-## 🚀 Probar el funcionamiento** del laboratorio (Outcome)
+## 🚀 Probar el funcionamiento del laboratorio (Outcome)
 ### Terraform apply
 
 ---

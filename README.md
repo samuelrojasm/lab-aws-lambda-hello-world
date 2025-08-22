@@ -87,10 +87,13 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ## Mejoras
 1. Versión extendida que permita
-    - GET /hola con query string
+    - GET /hola con query string 
+    - GET y POST /hola
     - Logs enriquecidos en CloudWatch
+    - Logs con retención para Lambda y API Gateway (HTTP API v2)
     - Lambda tenga acceso a leer de S3
-    - Uso de variables de Terraform para bucket y stage
+    - Uso de variable de Terraform para bucket
+    - CORS
 
 ---
 

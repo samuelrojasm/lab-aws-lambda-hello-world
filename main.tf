@@ -1,3 +1,6 @@
+# -----------------------------
+# === IAM: Rol y políticas ===
+# -----------------------------
 # Rol IAM para Lambda con política de confianza (assume role)
 resource "aws_iam_role" "lambda_role" {
   name               = "lambda-httpapi-role"
@@ -18,26 +21,32 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attach" {
   policy_arn = aws_iam_policy.lambda_basic_execution_policy.arn
 }
 
-# Empaquetar Lambda
+# -----------------------------
+# === Empaquetado de Lambda ===
+# -----------------------------
 data "archive_file" "lambda_zip" {
   type        = "zip"
   source_file = "lambda-function.py"
   output_path = "lambda_function_payload.zip"
 }
 
-# Función Lambda
+# ----------------------
+# === Función Lambda ===
+# ----------------------
 resource "aws_lambda_function" "lab_lambda_mvp" {
-  function_name    = "LabHttpApiLambda"
+  function_name    = var.lambda_name
   handler          = "main.lambda_handler"
-  runtime          = "python3.12"
+  runtime          = var.python_runtime
   role             = aws_iam_role.lambda_role.arn
   filename         = data.archive_file.lambda_zip.output_path
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 }
 
-# API Gateway HTTP API
+# ---------------------------------
+# === HTTP API (API Gateway v2) ===
+# ---------------------------------
 resource "aws_apigatewayv2_api" "http_api" {
-  name          = "lab-http-api"
+  name          = var.api_name
   protocol_type = "HTTP" # HTTP API (más barata y ligera que REST API).
 }
 
@@ -63,9 +72,9 @@ resource "aws_apigatewayv2_route" "lambda_route" {
 # Con auto_deploy = true:
 #   - Cada vez que Terraform o la consola modifiquen rutas o integraciones, el stage se actualiza automáticamente.
 #   - No es necesario crear un Deployment manual ni ejecutar un terraform apply adicional solo para “publicar” los cambios.
-resource "aws_apigatewayv2_stage" "lab_mvp" {
+resource "aws_apigatewayv2_stage" "stage" {
   api_id      = aws_apigatewayv2_api.http_api.id
-  name        = "lab_mvp"
+  name        = var.stage_name
   auto_deploy = true # significa que cada cambio se despliega automáticamente, sin que tengas que hacer terraform apply de nuevo.
 }
 

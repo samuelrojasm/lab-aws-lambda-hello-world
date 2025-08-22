@@ -2,7 +2,7 @@
 
 ## Week 01
 
-### ¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?
+### ⚡ ¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?
 - Cuando trabajas con `templatefile() + .tftpl`, Terraform genera el JSON en tiempo de ejecución antes de aplicar cambios.
 - Si modificas solo el archivo `.tftpl` y no cambias nada más en el .tf, Terraform detectará un cambio en la política generada.
 - Durante `terraform plan`, verás que la política IAM (aws_iam_policy, aws_iam_role_policy, etc.) tiene un diff porque el JSON resultante cambió.
@@ -37,7 +37,7 @@
 
 ---
 
-### Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON
+### ⚡ Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON
 - ARN de política administrada:
     - Ejemplo de política administrada por AWS (ARN)
         ```hcl

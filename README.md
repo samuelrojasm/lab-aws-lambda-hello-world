@@ -51,13 +51,6 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ---
 
-## 📌 Notas
-> Este repo es **experimental**, no es un proyecto oficial de CyberNuclei.<br>
-> Se recomienda romper cosas y aprender de los errores 😎<br>
-> Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
-
----
-
 ## 🛠️ Pasos de creción de Lab
 ### 1. Código de la función Lambda
 - El código es simple, escrito en **Python** (uno de los lenguajes más comunes para Lambda).
@@ -83,6 +76,12 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 ## 🚀 Probar el funcionamiento** del laboratorio (Outcome)
 ### Terraform apply
 
+---
+
+## 📌 Notas
+> Este repo es **experimental**, no es un proyecto oficial de CyberNuclei.<br>
+> Se recomienda romper cosas y aprender de los errores 😎<br>
+> Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
 
 ---
 

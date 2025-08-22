@@ -2,6 +2,12 @@
 
 ## 🔥 Week 01
 
+## Índice
+- [¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?](#¿qué-pasa-si-en-solo-modifico-el-archivo-.tftpl-y-ejecuto-terraform-apply?)
+- [Instalación](#instalación)
+- [Configuración](#configuración)
+- [Conclusión](#conclusión)
+
 ### ⚡ ¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?
 - Cuando trabajas con `templatefile() + .tftpl`, Terraform genera el JSON en tiempo de ejecución antes de aplicar cambios.
 - Si modificas solo el archivo `.tftpl` y no cambias nada más en el .tf, Terraform detectará un cambio en la política generada.
@@ -311,7 +317,7 @@ flowchart LR
 4. Necesidad de “snapshots” o versiones congeladas
     - El recurso aws_apigatewayv2_deployment crea como un “snapshot” de la configuración actual (rutas, integraciones, authorizers, etc.).
     - Si usas auto_deploy = false, tienes control para mantener versiones específicas de tu API y volver a una anterior si algo falla.
-- En resumen
+- 💡 En resumen
     - auto_deploy = true
         → Laboratorios, demos, prototipos, entornos de desarrollo.
         → Cada cambio se publica automáticamente.
@@ -320,5 +326,32 @@ flowchart LR
         → Necesitas crear manualmente un aws_apigatewayv2_deployment para publicar.
 #### 🔗 Referencias de auto_deploy
 - [Resource: aws_apigatewayv2_stage](https://registry.terraform.io/providers/-/aws/latest/docs/resources/apigatewayv2_stage?utm_source=chatgpt.com)
+
+---
+
+### CORS - Cross-Origin Resource Sharing
+- CORS significa Cross-Origin Resource Sharing (Compartición de Recursos entre Orígenes). 
+- Es un mecanismo de seguridad que usan los navegadores web para controlar cuándo y cómo un sitio web puede hacer solicitudes HTTP a un dominio diferente del que cargó la página.
+- 🔹 Problema que resuelve
+    - Por defecto, los navegadores implementan la política de **Same-Origin Policy**, que bloquea solicitudes entre dominios distintos por seguridad. Por ejemplo:
+        - Tu web está en https://miapp.com
+        - Quieres llamar a un API en https://api.ejemplo.com
+    - Sin CORS, el navegador bloquearía la petición para proteger al usuario.
+- 🔹 Cómo funciona
+    - El servidor que recibe la solicitud puede permitir o denegar el acceso configurando cabeceras HTTP especiales:
+        - Access-Control-Allow-Origin → Especifica qué dominios pueden acceder (por ejemplo, * permite todos).
+        - Access-Control-Allow-Methods → Qué métodos HTTP están permitidos (GET, POST, etc.).
+        - Access-Control-Allow-Headers → Qué cabeceras se permiten.
+        - Access-Control-Allow-Credentials → Si se permiten cookies o credenciales.
+    - Cuando un navegador ve estas cabeceras, permite que la solicitud continúe; si no están presentes o no coinciden, bloquea la solicitud.
+- 🔹 En API Gateway
+    - HTTP API soporta CORS nativamente, solo activas la opción y se configuran las cabeceras automáticamente.
+    - REST API requiere configurar un OPTIONS method y agregar cabeceras manualmente.
+- 💡 En resumen: 
+    - CORS es la **“puerta de seguridad”** que dice al navegador: sí, este otro dominio puede usar mi API.
+
+#### 🔗 Referencias de auto_deploy
+- [Amazon API Gateway – Soporte de CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html)
+- [Guía completa sobre CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)
 
 ---

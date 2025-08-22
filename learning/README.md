@@ -7,7 +7,7 @@
 - Si modificas solo el archivo `.tftpl` y no cambias nada más en el .tf, Terraform detectará un cambio en la política generada.
 - Durante `terraform plan`, verás que la política IAM (aws_iam_policy, aws_iam_role_policy, etc.) tiene un diff porque el JSON resultante cambió.
 - Al hacer `terraform apply`, Terraform actualizará ese recurso en AWS con la nueva versión de la política.
-#### ⚠️ Importante
+- ⚠️ Importante
 - Terraform no versiona el `.tftpl`, solo compara el resultado renderizado con lo que está aplicado en AWS.
 - Si los cambios en el `.tftpl` son equivalentes semánticamente (ejemplo: cambiar orden de claves JSON pero sin modificar permisos), AWS IAM a veces considera que no hubo cambio. Sin embargo, Terraform puede seguir mostrando diffs si la cadena generada no coincide byte a byte.
 - En prácticas profesionales, se suele usar `terraform plan` primero para revisar qué impacto tendrá antes de hacer apply.
@@ -17,7 +17,7 @@
 
 ---
 
-### Si el JSON de tu política no necesita reemplazo de variables
+### ⚡ Si el JSON de tu política no necesita reemplazo de variables
 - Lo más simple y correcto es usar file().
 - Ventajas de `file()` en este caso:
     - No hace render de variables, solo lee el contenido del archivo.
@@ -79,7 +79,7 @@
 
 ---
 
-### Entendiendo Rol y política
+### ⚡ Entendiendo Rol y política
 1. Rol IAM para Lambda
     - Este rol es como un “permisos contenedor” que tu Lambda puede asumir.
     - El archivo `assume-role-policy.json` (política de confianza) dice quién puede usar este rol.
@@ -114,7 +114,7 @@
     ```
 ---
 
-### Diagrama de flujo para una Lambda invocada vía API Gateway
+### ⚡ Diagrama de flujo para una Lambda invocada vía API Gateway
 - Diagrama de flujo para una Lambda invocada vía API Gateway, mostrando los pasos principales: petición, ejecución de la Lambda y logs en CloudWatch.
 ```mermaid
 flowchart TD
@@ -127,7 +127,7 @@ flowchart TD
     G --> H[API Gateway envía respuesta al usuario]
 ```
 
-**Explicación de los nodos:**
+📌 **Explicación de los nodos:**
 
 - **A:** El usuario hace la solicitud (por ejemplo, un `GET` o `POST` a tu endpoint).  
 - **B:** API Gateway recibe la petición.  
@@ -140,7 +140,7 @@ flowchart TD
 
 ---
 
-### Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch
+### ⚡ Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch
 - Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch, mostrando cómo fluye la petición, la autorización y la ejecución de la Lambda:
 ```mermaid
 flowchart TD
@@ -170,7 +170,7 @@ flowchart TD
     style H fill:#f6e7a1,stroke:#333,stroke-width:2px,color:black
 ```
 
-**Detalles clave en este diagrama:**
+📌 **Detalles clave en este diagrama:**
 
 1. **API Gateway:** recibe la solicitud y aplica autorización antes de invocar la Lambda.  
 2. **Rol IAM de Lambda:** la Lambda **no tiene permisos propios por defecto**; necesita un rol que le permita ejecutar acciones como escribir logs en CloudWatch.  
@@ -180,7 +180,7 @@ flowchart TD
 
 ---
 
-### Diagrama en donde los pasos de IAM y CloudWatch se detallen más visualmente
+### ⚡ Diagrama en donde los pasos de IAM y CloudWatch se detallen más visualmente
 - Los pasos de IAM y CloudWatch se detallen más visualmente
     - El usuario → API Gateway
     - El rol IAM que asume Lambda

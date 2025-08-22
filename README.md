@@ -4,6 +4,15 @@
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)](#)
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 
+
+[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=flat)](#)
+[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=flat-square)](#)
+[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=plastic)](#)
+[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=social)](#)
+[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](#)
+
+
+
 ¡Bienvenido a mi **laboratorio personal**! 🚀 
 Este repo es un espacio para **experimentar y aprender** sobre `AWS Lambda y Terraform`.  
 Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preocuparme por que todo sea perfecto. 😅

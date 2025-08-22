@@ -86,7 +86,8 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 ---
 
 ## Mejoras
-1. Versión extendida que permita
+1. Versión extendida next-level 1
+- Mejoras:
     - GET /hola con query string 
     - GET y POST /hola
     - Logs enriquecidos en CloudWatch
@@ -94,6 +95,20 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
     - Lambda tenga acceso a leer de S3
     - Uso de variable de Terraform para bucket
     - CORS
+- ¿Qué se gana con esta versión?
+    - Rutas GET/POST con el mismo integration (proxy).
+    - CORS configurable.
+    - Logs controlados y con retención:
+        - CloudWatch Logs de Lambda (por función).
+        - Access Logs del API Gateway (JSON, fácil de parsear).
+    - IAM limpia con Terraform file() y mínimo privilegio a S3.
+    - Variables para bucket y retención.
+    - Payload v2.0 (HTTP API moderno, menor costo/latencia).
+
+2. Versión extendida next-level 2
+- Mejoras:
+    - WAF (AWS WAF v2) al HTTP API
+    - auth con IAM/Cognito para cerrar el endpoint
 
 ---
 

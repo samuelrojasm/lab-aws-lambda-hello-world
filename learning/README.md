@@ -105,7 +105,13 @@
     - Política = “qué acciones puede hacer el rol”
     - Lambda   = “asume el rol, por lo tanto obtiene esos permisos mientras corre”
 - 💡 **Tip:** Piensa en el rol como un “contenedor de permisos”, y la Lambda como “usuario temporal” que entra en ese contenedor cada vez que se ejecuta.
-
+- Digrama de la relación rol, política y Lambda:
+    ```mermaid
+    flowchart TD
+        A[Lambda Function] -- Asume --> B[IAM Role<br>lambda-httapi-role]
+        B --> C[Políticas adjuntas al rol<br>lambda-logs-policy]
+        C --> D[Permisos que Lambda puede usar<br>logs:CreateLogGroup<br>logs:CreateLogStream<br>logs:PutLogEvents]
+    ```
 ---
 
 ### Diagrama de flujo para una Lambda invocada vía API Gateway
@@ -164,5 +170,67 @@ flowchart TD
     style H fill:#ff9,stroke:#333,stroke-width:2px
 ```
 
+**Detalles clave en este diagrama:**
+
+1. **API Gateway:** recibe la solicitud y aplica autorización antes de invocar la Lambda.  
+2. **Rol IAM de Lambda:** la Lambda **no tiene permisos propios por defecto**; necesita un rol que le permita ejecutar acciones como escribir logs en CloudWatch.  
+3. **CloudWatch:** recibe logs solo si la política IAM de la Lambda lo permite.  
+4. **Flujo de error:** si la autorización falla, se devuelve un error 403.  
+5. **Respuesta final:** la Lambda retorna datos a API Gateway, que los envía al usuario.  
+
 ---
 
+### Diagrama en donde los pasos de IAM y CloudWatch se detallen más visualmente
+- Los pasos de IAM y CloudWatch se detallen más visualmente
+    - El usuario → API Gateway
+    - El rol IAM que asume Lambda
+    - La política de permisos para CloudWatch
+    - El flujo de logs y respuesta final
+
+```mermaid
+flowchart TD
+    %% Inicio de la peticion
+    A[Usuario envia solicitud HTTP] --> B[API Gateway recibe la peticion]
+
+    %% Autorizacion en API Gateway
+    B --> C[API Gateway verifica autorizacion IAM o Cognito]
+    C --> D{Autorizado}
+    D -- No --> Z[API Gateway devuelve error 403]
+    D -- Si --> E[API Gateway invoca Lambda]
+
+    %% Lambda asume rol IAM
+    E --> F[Lambda asume rol IAM]
+    F --> G[Rol IAM tiene politica de permisos]
+
+    %% Ejecucion de Lambda
+    G --> H[Lambda ejecuta logica de negocio]
+    
+    %% Logs en CloudWatch
+    H --> I[Lambda intenta escribir logs]
+    I --> J{Permiso CloudWatch Logs}
+    J -- No --> X[Error de permisos IAM]
+    J -- Si --> K[Logs enviados a CloudWatch]
+
+    %% Respuesta al usuario
+    H --> L[Lambda genera respuesta]
+    L --> M[Respuesta regresa a API Gateway]
+    M --> N[API Gateway envia respuesta al usuario]
+
+    %% Estilos para resaltar
+    style F fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#bbf,stroke:#333,stroke-width:2px
+    style K fill:#ff9,stroke:#333,stroke-width:2px
+```
+
+📌 **Cómo leerlo:**
+1. El **usuario** hace la petición → llega a **API Gateway**.  
+2. API Gateway revisa si la petición está autorizada.  
+   - Si **no**: regresa **403 Forbidden**.  
+   - Si **sí**: invoca la **Lambda**.  
+3. La **Lambda asume su rol IAM** y ejecuta la lógica.  
+4. Cuando intenta escribir logs en **CloudWatch**:  
+   - Si el rol **no tiene permisos**, falla.  
+   - Si **sí tiene permisos**, los logs se guardan en **CloudWatch**.  
+5. La Lambda genera una **respuesta**, que pasa por API Gateway y regresa al **usuario**.  
+
+---

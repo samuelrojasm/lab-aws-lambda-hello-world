@@ -88,7 +88,7 @@
 2. Política de permisos
     - La política contiene qué puede hacer la Lambda mientras use este rol.
     - Esto le da permiso a Lambda solo para escribir logs en CloudWatch.
-    - En este eejmplo esta especificando explícitamente los ARNs de CloudWatch Logs, usando comodines para región y cuenta (`*`):
+    - En este ejemplo esta especificando explícitamente los ARNs de CloudWatch Logs, usando comodines para región y cuenta (`*`):
         ```json
         "Resource": "arn:aws:logs:*:*:*"
         ```
@@ -118,3 +118,51 @@ flowchart TD
     E --> F[Lambda registra logs en CloudWatch]
     E --> G[Lambda devuelve respuesta a API Gateway]
     G --> H[API Gateway envía respuesta al usuario]
+```
+
+**Explicación de los nodos:**
+
+- **A:** El usuario hace la solicitud (por ejemplo, un `GET` o `POST` a tu endpoint).  
+- **B:** API Gateway recibe la petición.  
+- **C:** Se aplican autorizaciones, validaciones y mapeo de rutas.  
+- **D:** API Gateway invoca la Lambda asociada.  
+- **E:** La Lambda ejecuta la lógica que definiste.  
+- **F:** La Lambda envía logs a CloudWatch.  
+- **G:** Lambda devuelve la respuesta.  
+- **H:** API Gateway reenvía la respuesta al usuario.
+
+---
+
+### Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch
+- Muestra cómo fluye la petición, la autorización y la ejecución de la Lambda:
+```mermaid
+flowchart TD
+    %% Inicio de la petición
+    A[Usuario hace solicitud HTTP] --> B[API Gateway recibe la petición]
+
+    %% Validación y autorización
+    B --> C[API Gateway verifica autorización (IAM o Cognito)]
+    C --> D{¿Autorizado?}
+    D -- No --> I[API Gateway devuelve error 403 al usuario]
+    D -- Sí --> E[API Gateway invoca Lambda]
+
+    %% Ejecución de Lambda
+    E --> F[Lambda asume rol IAM asignado]
+    F --> G[Lambda ejecuta código]
+    
+    %% Logs y permisos
+    G --> H[Lambda escribe logs en CloudWatch]
+    H --> J[CloudWatch almacena logs según política IAM]
+
+    %% Respuesta final
+    G --> K[Lambda devuelve respuesta a API Gateway]
+    K --> L[API Gateway envía respuesta al usuario]
+
+    %% Leyenda
+    style F fill:#f9f,stroke:#333,stroke-width:2px
+    style H fill:#ff9,stroke:#333,stroke-width:2px
+```
+
+
+---
+

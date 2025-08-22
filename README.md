@@ -95,7 +95,7 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
     - Lambda tenga acceso a leer de S3
     - Uso de variable de Terraform para bucket
     - CORS
-- ¿Qué se gana con esta versión?
+- ¿Qué se gana con esta versión next-level 1?
     - Rutas GET/POST con el mismo integration (proxy).
     - CORS configurable.
     - Logs controlados y con retención:
@@ -104,11 +104,34 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
     - IAM limpia con Terraform file() y mínimo privilegio a S3.
     - Variables para bucket y retención.
     - Payload v2.0 (HTTP API moderno, menor costo/latencia).
-
 2. Versión extendida next-level 2
-- Mejoras:
-    - WAF (AWS WAF v2) al HTTP API
-    - auth con IAM/Cognito para cerrar el endpoint
+- Mejora: WAF (AWS WAF v2) al HTTP API
+    - Crear el WebACL (WAF)
+    - Asociar el WebACL al API Gateway HTTP API
+- ¿Qué se gana con esta versión-next-level 2?
+    - Protección contra ataques comunes en aplicaciones web
+    - Filtrado de tráfico no deseado antes de que llegue a tu Lambda o backend
+    - Mitigación de DDoS a nivel de aplicación (L7)
+    - Reglas gestionadas (Managed Rules) listas para usar
+    - Flexibilidad con reglas personalizadas
+    - Cumplimiento y buenas prácticas de seguridad
+3. Versión extendida next-level 3
+- Mejora: auth con IAM/Cognito para cerrar el endpoint
+    - Autenticación con IAM: Cuando usas IAM auth, estás diciendo que solo identidades AWS autorizadas (usuarios, roles, aplicaciones con credenciales válidas de AWS) pueden invocar tu API.
+    - Autenticación con Amazon Cognito: Aquí cierras el endpoint pero en vez de identidades IAM puras, usas usuarios de una aplicación (login con usuario/contraseña, redes sociales, SAML, etc.).
+ - ¿Qué se gana con esta versión-next-level 3?
+    - Autenticación con IAM:
+        - Con esto, el endpoint queda inaccesible públicamente, salvo para clientes que usen credenciales AWS válidas (con permisos).
+    - Amazon Cognito: 
+        - Esto permite exponer un endpoint seguro a usuarios externos sin darles credenciales IAM.
+        - Acceso cerrado a usuarios autenticados con JWT.
+    - Ambos cierran el API (no cualquiera puede entrar), y es considerado best practice para cualquier endpoint sensible.
+    - Diferencias:
+| Método           | Caso típico                                                                    | Nivel de seguridad                        |
+| ---------------- | ------------------------------------------------------------------------------ | ----------------------------------------- |
+| **IAM Auth**     | Acceso desde apps internas, microservicios, Lambda, CI/CD con credenciales AWS | Muy fuerte (firmas SigV4, control IAM)    |
+| **Cognito Auth** | Acceso desde usuarios finales (web, móviles) con login y JWT                   | Flexible, más amigable para apps públicas |
+| **Sin auth**     | Endpoint público (ej. webhook)                                                 | Riesgoso, cualquiera puede invocar        |
 
 ---
 

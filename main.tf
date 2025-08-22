@@ -59,6 +59,10 @@ resource "aws_apigatewayv2_route" "lambda_route" {
 }
 
 # Deployment automático
+# Si este paso no se ejecuta el endpoint NO refleja los cambios.
+# Con auto_deploy = true:
+#   - Cada vez que Terraform o la consola modifiquen rutas o integraciones, el stage se actualiza automáticamente.
+#   - No es necesario crear un Deployment manual ni ejecutar un terraform apply adicional solo para “publicar” los cambios.
 resource "aws_apigatewayv2_stage" "lab_mvp" {
   api_id      = aws_apigatewayv2_api.http_api.id
   name        = "lab_mvp"

@@ -262,7 +262,7 @@ flowchart TD
     STAGE -->|expone endpoint| API
     PERM -->|permite invocar| LAMBDA
 ```
-#### Diagrama de lRoute → Integration → Lambda
+#### Diagrama de Route → Integration → Lambda
 ```mermaid 
 flowchart LR
     ROUTE["Route: POST /hola"] --> TARGET["Target: integrations/{id}"]
@@ -270,23 +270,55 @@ flowchart LR
     INTEGRATION --> LAMBDA["AWS Lambda (lab_lambda_mvp)"]
 ```
 
+---
+
+### ⚡ Auto deploy en Stage de API Gateway
+- En API Gateway (HTTP API), cuando creas o cambias rutas o integraciones, normalmente tendrías que hacer un paso manual (o vía Terraform) de Deployment para que esos cambios se reflejen en el **endpoint público**.
+- Cuando está activado auto deploy (auto_deploy = true)
+    - Cada vez que Terraform o la consola modifiquen rutas o integraciones, el stage se actualiza automáticamente.
+    - Es decir, no necesitas crear un Deployment manual ni ejecutar un terraform apply adicional solo para “publicar” los cambios.
+- Ojo con esto 👀
+    - Terraform sigue siendo necesario para crear/actualizar recursos en tu infraestructura.
+    - Lo que evita es que tengas que crear explícitamente un aws_apigatewayv2_deployment.
+    - Básicamente, Terraform cambia la ruta/integración → API Gateway detecta el cambio → lo publica automáticamente en el stage.
+- En resumen:
+    - `auto_deploy = true` significa que los cambios en la API se reflejan de inmediato en el endpoint del stage, sin que tengas que crear despliegues manuales.
+    - Pero sí necesitas terraform apply para aplicar tus cambios de infraestructura.
+
 #### 🔗 Referencias políticas de AWS
 - []()
 
 ---
 
-### ⚡ Texto
-- Texto
-
-#### 🔗 Referencias políticas de AWS
-- []()
-
----
-
-### ⚡ Texto
-- Texto
-
-#### 🔗 Referencias políticas de AWS
-- []()
+### ⚡ Casos en que usarías auto_deploy = false
+1. Control de versiones y despliegues manuales
+    - Si quieres que los cambios en tus rutas/integraciones no se publiquen de inmediato.
+    - Esto es útil cuando trabajas en equipo y quieres decidir cuándo exactamente un cambio va a producción.
+    - Ejemplo:
+        - Un desarrollador crea una nueva ruta /beta.
+        - No quieres que los clientes la vean hasta que decidas hacer un “deployment oficial”.
+2. Ciclos de despliegue gestionados (CI/CD)
+    - En pipelines (ej: GitHub Actions), se suele separar:
+        - Terraform apply → crea/actualiza rutas e integraciones.
+        - Terraform apply (o un paso aparte) → ejecuta un recurso aws_apigatewayv2_deployment que publica esos cambios en el stage.
+    - Esto permite probar la API primero en dev/test antes de desplegar a prod.
+3. Entornos críticos (producción estable)
+    - Si tu API está en producción con muchos clientes, no quieres que cada cambio se publique inmediatamente.
+    - Con auto_deploy = false, puedes:
+        - Preparar cambios.
+        - Probarlos en un stage distinto.
+        - Luego desplegar manualmente en prod cuando estés seguro.
+4. Necesidad de “snapshots” o versiones congeladas
+    - El recurso aws_apigatewayv2_deployment crea como un “snapshot” de la configuración actual (rutas, integraciones, authorizers, etc.).
+    - Si usas auto_deploy = false, tienes control para mantener versiones específicas de tu API y volver a una anterior si algo falla.
+- En resumen
+    - auto_deploy = true
+        → Laboratorios, demos, prototipos, entornos de desarrollo.
+        → Cada cambio se publica automáticamente.
+    - auto_deploy = false
+        → Producción, pipelines serios, control estricto de cuándo se despliegan cambios.
+        → Necesitas crear manualmente un aws_apigatewayv2_deployment para publicar.
+#### 🔗 Referencias de auto_deploy
+- [Resource: aws_apigatewayv2_stage](https://registry.terraform.io/providers/-/aws/latest/docs/resources/apigatewayv2_stage?utm_source=chatgpt.com)
 
 ---

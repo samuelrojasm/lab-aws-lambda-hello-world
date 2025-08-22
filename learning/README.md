@@ -3,11 +3,11 @@
 ## 🔥 Week 01
 
 ### Índice Week 01
-- [¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#qué-pasa-si-solo-modifico-el-archivo-.tftpl-y-ejecuto-terraform-apply)
-- [Si el JSON de tu política no necesita reemplazo de variables](#si-el-JSON-de-tu-política-no-necesita-reemplazo-de-variables)
-- [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-enTerraformentreusar-un-arn-de-política-administrada-por-AWS-y-crear-tu-propia-política-json)
-- [Entendiendo Rol y política](#entendiendo-rol-ypolítica)
-- [Diagrama de flujo para una Lambda invocada vía API Gateway]()
+- [¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#qué-pasa-si-solo-modifico-el-archivo-tftpl-y-ejecuto-terraform-apply)
+- [Si el JSON de tu política no necesita reemplazo de variables](#si-el-json-de-tu-política-no-necesita-reemplazo-de-variables)
+- [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-en-Terraform-entre-usar-un-arn-de-política-administrada-por-aws-y-crear-tu-propia-política-json)
+- [Entendiendo Rol y política](#entendiendo-rol-y-política)
+- [Diagrama de flujo para una Lambda invocada vía API Gateway](#diagrama_de_flujo_para_una_lambda_invocada_vía_api_gateway)
 - [Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch]()
 - [Diagrama en donde los pasos de IAM y CloudWatch se detallen]()
 - [Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API).]()
@@ -18,7 +18,7 @@
 - []()
 - []()
 
-
+---
 
 ### ⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?
 - Cuando trabajas con `templatefile() + .tftpl`, Terraform genera el JSON en tiempo de ejecución antes de aplicar cambios.

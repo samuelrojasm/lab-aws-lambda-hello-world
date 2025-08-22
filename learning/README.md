@@ -79,5 +79,42 @@
 
 ---
 
+### Entendiendo Rol y política
+1. Rol IAM para Lambda
+    - Este rol es como un “permisos contenedor” que tu Lambda puede asumir.
+    - El archivo `assume-role-policy.json` (política de confianza) dice quién puede usar este rol.
+    - Esto significa: “Lambda puede asumir este rol y recibir sus permisos”.
+    - **Importante:** aquí no se definen permisos todavía, solo quién puede usar el rol.
+2. Política de permisos
+    - La política contiene qué puede hacer la Lambda mientras use este rol.
+    - Esto le da permiso a Lambda solo para escribir logs en CloudWatch.
+    - En este eejmplo esta especificando explícitamente los ARNs de CloudWatch Logs, usando comodines para región y cuenta (`*`):
+        ```json
+        "Resource": "arn:aws:logs:*:*:*"
+        ```
+    - Si quisieras que Lambda acceda a S3, DynamoDB, etc., necesitarías agregar esas acciones a la política.
+3. Asociar la política al rol
+    - Aquí le dices a AWS: “este rol ahora tiene estos permisos”.
+    - La Lambda hereda estos permisos porque asumirá este rol.
+4. Función Lambda
+    - Cuando se ejecuta la Lambda, AWS automáticamente asume el rol que le asignaste.
+    - Por lo tanto, los permisos de la Lambda = los permisos del rol + políticas adjuntas.
+    - En este Lab la Lambda solo puede escribir logs, porque eso es lo que dice la política.
+- Definiciones:
+    - Rol      = “quién puede usarlo y qué permisos tiene”
+    - Política = “qué acciones puede hacer el rol”
+    - Lambda   = “asume el rol, por lo tanto obtiene esos permisos mientras corre”
+- 💡 **Tip:** Piensa en el rol como un “contenedor de permisos”, y la Lambda como “usuario temporal” que entra en ese contenedor cada vez que se ejecuta.
 
 ---
+
+### Diagrama de flujo para una Lambda invocada vía API Gateway
+```mermaid
+flowchart TD
+    A[Usuario hace solicitud HTTP] --> B[API Gateway recibe la petición]
+    B --> C[Verifica autorización y rutas]
+    C --> D[Invoca AWS Lambda]
+    D --> E[Lambda ejecuta código]
+    E --> F[Lambda registra logs en CloudWatch]
+    E --> G[Lambda devuelve respuesta a API Gateway]
+    G --> H[API Gateway envía respuesta al usuario]

@@ -5,7 +5,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 # Política de permisos para Lambda (logs, etc.)
-# Para este caso usamos: AWSLambdaBasicExecutionRole
+# Para este caso usamos el json de la política AWSLambdaBasicExecutionRole
 # Se puede extender dependiendo del los accesos que requiera AWS Lambda
 resource "aws_iam_policy" "lambda_basic_execution_policy" {
   name   = "lambda-logs-policy"
@@ -26,7 +26,7 @@ data "archive_file" "lambda_zip" {
 }
 
 # Función Lambda
-resource "aws_lambda_function" "my_lambda" {
+resource "aws_lambda_function" "lab_lambda_mvp" {
   function_name    = "MyHttpApiLambda"
   handler          = "main.lambda_handler"
   runtime          = "python3.12"

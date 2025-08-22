@@ -127,6 +127,7 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
         - Acceso cerrado a usuarios autenticados con JWT.
     - Ambos cierran el API (no cualquiera puede entrar), y es considerado best practice para cualquier endpoint sensible.
     - Diferencias:
+    
 | Método           | Caso típico                                                                    | Nivel de seguridad                        |
 | ---------------- | ------------------------------------------------------------------------------ | ----------------------------------------- |
 | **IAM Auth**     | Acceso desde apps internas, microservicios, Lambda, CI/CD con credenciales AWS | Muy fuerte (firmas SigV4, control IAM)    |

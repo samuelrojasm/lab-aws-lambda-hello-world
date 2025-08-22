@@ -60,9 +60,9 @@
         # Sim reemplazo de variables dinámicas dentro del JSON.
         resource "aws_iam_policy" "lambda_basic_execution_policy" {
             name   = "lambda-logs-policy"
-            policy = file("${path.module}/lambda-permissions-policy.json", {}) 
+            policy = file("${path.module}/lambda-permissions-policy.json", {})
         }
-    ```
+        ```
     - ✅ Ventajas:
         - Control total sobre los permisos.
         - Puedes limitar recursos específicos, no usar *.

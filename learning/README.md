@@ -262,6 +262,13 @@ flowchart TD
     STAGE -->|expone endpoint| API
     PERM -->|permite invocar| LAMBDA
 ```
+#### Diagrama de lRoute → Integration → Lambda
+```mermaid 
+flowchart LR
+    ROUTE["Route: POST /hola"] --> TARGET["Target: integrations/{id}"]
+    TARGET --> INTEGRATION["Integration: Lambda Proxy"]
+    INTEGRATION --> LAMBDA["AWS Lambda (lab_lambda_mvp)"]
+```
 
 #### 🔗 Referencias políticas de AWS
 - []()

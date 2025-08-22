@@ -85,6 +85,9 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
     aws sso login --profile tf
     ```
 ### 2. Ejecución de terraform init
+<p align="center">
+    <img src="imagenes/tf-init.png" alt="Variables" width="70%">
+</p>
 
 
 

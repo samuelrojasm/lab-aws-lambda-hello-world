@@ -5,11 +5,7 @@
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
 
 
-[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=flat)](#)
-[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=flat-square)](#)
-[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=plastic)](#)
-[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=social)](#)
-[![Python](https://img.shields.io/badge/Language-Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](#)
+[![Python](https://img.shields.io/badge/Language-Python-3776AB?logo=python&logoColor=white)](#)
 
 
 

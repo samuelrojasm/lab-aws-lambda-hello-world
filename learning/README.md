@@ -1,6 +1,11 @@
 # 🧪 Diario de aprendizaje del lab: AWS Lambda + Terraform
 
-## 🔥 Week 01
+## Índide de Semanas
+- [Week 01](#week-01)
+
+---
+
+## 🔥 Week 01 <a name="week-01"></a>
 
 ### Índice Week 01
 - [⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#modificar-tftpl)
@@ -9,23 +14,12 @@
 - [Entendiendo Rol y política](#entendiendo-rol-politica)
 - [Diagrama de flujo para una Lambda invocada vía API Gateway](#diagrama-lambda-apigateway)
 
-
-
-
-- [⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#qué-pasa-si-solo-modifico-el-archivo-tftpl-y-ejecuto-terraform-apply)
-- [Si el JSON de tu política no necesita reemplazo de variables](#si-el-json-de-tu-política-no-necesita-reemplazo-de-variables)
-- [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-en-Terraform-entre-usar-un-arn-de-política-administrada-por-aws-y-crear-tu-propia-política-json)
-- [Entendiendo Rol y política](#entendiendo-rol-y-política)
-- [Diagrama de flujo para una Lambda invocada vía API Gateway](#diagrama_de_flujo_para_una_lambda_invocada_vía_api_gateway)
-- [Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch]()
-- [Diagrama en donde los pasos de IAM y CloudWatch se detallen]()
-- [Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API).]()
-- [Auto deploy en Stage de API Gateway]()
-- [Casos de uso de auto_deploy = false]()
-- [CORS - Cross-Origin Resource Sharing](#cors-cross-origin-resource-sharing)
-- []()
-- []()
-- []()
+- [Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch](#diagrama-roles-iam-cloudwatch)
+- [Diagrama en donde los pasos de IAM y CloudWatch se detallen](#diagrama-pasos-iam-cloudwatch)
+- [Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API)](#integracion-lambda-api-gateway)
+- [Auto deploy en Stage de API Gateway](#auto-deploy-api-gateway)
+- [Casos de uso de auto_deploy = false](#casos-auto-deploy-false)
+- [CORS - Cross-Origin Resource Sharing](#cors)
 
 ---
 
@@ -44,7 +38,7 @@
 
 ---
 
-### ⚡ Si el JSON de tu política no necesita reemplazo de variables
+### ⚡ Si el JSON de tu política no necesita reemplazo de variables <a name="json-sin-reemplazo"></a>
 - Lo más simple y correcto es usar file().
 - Ventajas de `file()` en este caso:
     - No hace render de variables, solo lee el contenido del archivo.
@@ -64,7 +58,7 @@
 
 ---
 
-### ⚡ Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON
+### ⚡ Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON <a name="diferencia-arn-vs-propia"></a>
 - ARN de política administrada:
     - Ejemplo de política administrada por AWS (ARN)
         ```hcl
@@ -106,7 +100,7 @@
 
 ---
 
-### ⚡ Entendiendo Rol y política
+### ⚡ Entendiendo Rol y política <a name="entendiendo-rol-politica"></a>
 1. Rol IAM para Lambda
     - Este rol es como un “permisos contenedor” que tu Lambda puede asumir.
     - El archivo `assume-role-policy.json` (política de confianza) dice quién puede usar este rol.
@@ -141,7 +135,7 @@
     ```
 ---
 
-### ⚡ Diagrama de flujo para una Lambda invocada vía API Gateway
+### ⚡ Diagrama de flujo para una Lambda invocada vía API Gateway <a name="diagrama-lambda-apigateway"></a>
 - Diagrama de flujo para una Lambda invocada vía API Gateway, mostrando los pasos principales: petición, ejecución de la Lambda y logs en CloudWatch.
 ```mermaid
 flowchart TD
@@ -167,7 +161,7 @@ flowchart TD
 
 ---
 
-### ⚡ Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch
+### ⚡ Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch <a name="diagrama-roles-iam-cloudwatch"></a>
 - Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch, mostrando cómo fluye la petición, la autorización y la ejecución de la Lambda:
 ```mermaid
 flowchart TD
@@ -207,7 +201,7 @@ flowchart TD
 
 ---
 
-### ⚡ Diagrama en donde los pasos de IAM y CloudWatch se detallen
+### ⚡ Diagrama en donde los pasos de IAM y CloudWatch se detallan <a name="diagrama-pasos-iam-cloudwatch"></a>
 - Los pasos de IAM y CloudWatch se detallen más visualmente
     - El usuario → API Gateway
     - El rol IAM que asume Lambda
@@ -262,7 +256,7 @@ flowchart TD
 
 ---
 
-### ⚡ Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API).
+### ⚡ Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API) <a name="integracion-lambda-api-gateway"></a>
 1. Creas el API HTTP.
 2. Lo integras con Lambda.
 3. Defines una ruta (POST /hola).
@@ -299,7 +293,7 @@ flowchart LR
 
 ---
 
-### ⚡ Auto deploy en Stage de API Gateway
+### ⚡ Auto deploy en Stage de API Gateway <a name="auto-deploy-api-gateway"></a>
 - En API Gateway (HTTP API), cuando creas o cambias rutas o integraciones, normalmente tendrías que hacer un paso manual (o vía Terraform) de Deployment para que esos cambios se reflejen en el **endpoint público**.
 - Cuando está activado auto deploy (auto_deploy = true)
     - Cada vez que Terraform o la consola modifiquen rutas o integraciones, el stage se actualiza automáticamente.
@@ -317,7 +311,7 @@ flowchart LR
 
 ---
 
-### ⚡ Casos de uso de auto_deploy = false
+### ⚡ Casos de uso de auto_deploy = false <a name="casos-auto-deploy-false"></a>
 1. Control de versiones y despliegues manuales
     - Si quieres que los cambios en tus rutas/integraciones no se publiquen de inmediato.
     - Esto es útil cuando trabajas en equipo y quieres decidir cuándo exactamente un cambio va a producción.
@@ -350,7 +344,7 @@ flowchart LR
 
 ---
 
-### CORS - Cross-Origin Resource Sharing
+###  ⚡ CORS - Cross-Origin Resource Sharing <a name="cors"></a>
 - CORS significa Cross-Origin Resource Sharing (Compartición de Recursos entre Orígenes). 
 - Es un mecanismo de seguridad que usan los navegadores web para controlar cuándo y cómo un sitio web puede hacer solicitudes HTTP a un dominio diferente del que cargó la página.
 - 🔹 Problema que resuelve

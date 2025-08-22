@@ -1,7 +1,5 @@
 # 🧪 Lab Personal: AWS Lambda + Terraform
 
-[![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?logo=amazon-web-services&logoColor=white)](#)
-[![AWS](https://img.shields.io/badge/Cloud-AWS-232F3E?logo=amazonaws&logoColor=white)](#)
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900?logo=amazonaws&logoColor=white)](#)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)](#)
 [![HCL](https://img.shields.io/badge/Language-HCL-blueviolet)](#)
@@ -45,18 +43,20 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ---
 
-## 📌 Notas
-> Este repo es **experimental**, no es un proyecto oficial de CyberNuclei. 
-> Se recomienda romper cosas y aprender de los errores 😎
-> Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
-
----
-
 ## 💡 Notas de aprendizaje
 - Cada cambio importante se documenta en `learning/`.
     - `learning/README.md`: Registro de avances semanales.
     - `learning/experiments/`: Scripts de prueba que no entran en el repo oficial.
     - `learning/cheatsheets/`: Comandos útiles y mini-guías para referencia rápida.
+
+---
+
+## 📌 Notas
+> Este repo es **experimental**, no es un proyecto oficial de CyberNuclei.
+
+> Se recomienda romper cosas y aprender de los errores 😎
+
+> Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
 
 ---
 

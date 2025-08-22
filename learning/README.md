@@ -249,7 +249,7 @@ flowchart TD
         API[aws_apigatewayv2_api]
         INT[aws_apigatewayv2_integration]
         ROUTE[aws_apigatewayv2_route<br>POST /hola]
-        STAGE[aws_apigatewayv2_stage "lab_mvp"]
+        STAGE[aws_apigatewayv2_stage<br>lab_mvp]
     end
 
     subgraph Lambda["AWS Lambda"]

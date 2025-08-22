@@ -109,6 +109,7 @@
 ---
 
 ### Diagrama de flujo para una Lambda invocada vía API Gateway
+- Diagrama de flujo para una Lambda invocada vía API Gateway, mostrando los pasos principales: petición, ejecución de la Lambda y logs en CloudWatch.
 ```mermaid
 flowchart TD
     A[Usuario hace solicitud HTTP] --> B[API Gateway recibe la petición]
@@ -134,7 +135,7 @@ flowchart TD
 ---
 
 ### Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch
-- Muestra cómo fluye la petición, la autorización y la ejecución de la Lambda:
+- Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch, mostrando cómo fluye la petición, la autorización y la ejecución de la Lambda:
 ```mermaid
 flowchart TD
     %% Inicio de la petición

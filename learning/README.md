@@ -2,13 +2,25 @@
 
 ## 🔥 Week 01
 
-## Índice
-- [¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?](#¿qué-pasa-si-en-solo-modifico-el-archivo-.tftpl-y-ejecuto-terraform-apply?)
-- [Instalación](#instalación)
-- [Configuración](#configuración)
-- [Conclusión](#conclusión)
+## Índice Week 01
+- [¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?](#qué-pasa-si-solo-modifico-el-archivo-.tftpl-y-ejecuto-terraform-apply)
+- [Si el JSON de tu política no necesita reemplazo de variables](#si-el-JSON-de-tu-política-no-necesita-reemplazo-de-variables)
+- [Diferencia en Terraform entre usar un ARN de política administrada por AWS y crear tu propia política JSON](#diferencia-enTerraformentreusar-un-arn-de-política-administrada-por-AWS-y-crear-tu-propia-política-json)
+- [Entendiendo Rol y política](#entendiendo-rol-ypolítica)
+- [Diagrama de flujo para una Lambda invocada vía API Gateway]()
+- [Diagrama que incluye los roles IAM, políticas y permisos de CloudWatch]()
+- [Diagrama en donde los pasos de IAM y CloudWatch se detallen]()
+- [Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API).]()
+- [Auto deploy en Stage de API Gateway]()
+- [Casos de uso de auto_deploy = false]()
+- [CORS - Cross-Origin Resource Sharing]()
+- []()
+- []()
+- []()
 
-### ⚡ ¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?
+
+
+### ⚡ ¿Qué pasa si solo modifico el archivo .tftpl y ejecuto terraform apply?
 - Cuando trabajas con `templatefile() + .tftpl`, Terraform genera el JSON en tiempo de ejecución antes de aplicar cambios.
 - Si modificas solo el archivo `.tftpl` y no cambias nada más en el .tf, Terraform detectará un cambio en la política generada.
 - Durante `terraform plan`, verás que la política IAM (aws_iam_policy, aws_iam_role_policy, etc.) tiene un diff porque el JSON resultante cambió.
@@ -186,7 +198,7 @@ flowchart TD
 
 ---
 
-### ⚡ Diagrama en donde los pasos de IAM y CloudWatch se detallen más visualmente
+### ⚡ Diagrama en donde los pasos de IAM y CloudWatch se detallen
 - Los pasos de IAM y CloudWatch se detallen más visualmente
     - El usuario → API Gateway
     - El rol IAM que asume Lambda
@@ -296,7 +308,7 @@ flowchart LR
 
 ---
 
-### ⚡ Casos en que usarías auto_deploy = false
+### ⚡ Casos de uso de auto_deploy = false
 1. Control de versiones y despliegues manuales
     - Si quieres que los cambios en tus rutas/integraciones no se publiquen de inmediato.
     - Esto es útil cuando trabajas en equipo y quieres decidir cuándo exactamente un cambio va a producción.

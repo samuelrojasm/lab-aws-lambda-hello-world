@@ -9,7 +9,7 @@ resource "aws_iam_role" "lambda_role" {
 # Se puede extender dependiendo del los accesos que requiera AWS Lambda
 resource "aws_iam_policy" "lambda_policy" {
   name   = "lambda-logs-policy"
-  policy = templatefile("${path.module}/lambda-permissions-policy.tftpl", {})
+  policy = file("${path.module}/lambda-permissions-policy.json")
 }
 
 # Asociar la política al rol

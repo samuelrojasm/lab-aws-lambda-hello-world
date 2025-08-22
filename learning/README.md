@@ -12,18 +12,19 @@
 - Si los cambios en el `.tftpl` son equivalentes semánticamente (ejemplo: cambiar orden de claves JSON pero sin modificar permisos), AWS IAM a veces considera que no hubo cambio. Sin embargo, Terraform puede seguir mostrando diffs si la cadena generada no coincide byte a byte.
 - En prácticas profesionales, se suele usar `terraform plan` primero para revisar qué impacto tendrá antes de hacer apply.
 
-#### 🔗 Referencias
+#### 🔗 Referencias templatefile()
 - [templatefile Function](https://developer.hashicorp.com/terraform/language/functions/templatefile)
 
 ---
 
 ### Si el JSON de tu política no necesita reemplazo de variables
 - Lo más simple y correcto es usar file().
-- Ventajas de file() en este caso:
+- Ventajas de `file()` en este caso:
     - No hace render de variables, solo lee el contenido del archivo.
-    - Evita errores de sintaxis si accidentalmente Terraform intenta interpretar ${}.
+    - Evita errores de sintaxis si accidentalmente Terraform intenta interpretar `${}`.
     - Es más claro y directo para archivos estáticos de JSON.
-- 💡 Nota: jsonencode() solo es útil si defines la política directamente en HCL y quieres convertirla a JSON dinámicamente. Si ya tienes un JSON completo, file() es la forma más limpia.
+- No necesitas `jsonencode()` ni `templatestring()` si no vas a reemplazar variables dinámicas dentro del JSON.
+- 💡 Nota: `jsonencode()` solo es útil si defines la política directamente en HCL y quieres convertirla a JSON dinámicamente. Si ya tienes un JSON completo, `file()` es la forma más limpia.
 - Ejemplo:
     ```hcl
     resource "aws_iam_policy" "example" {
@@ -31,5 +32,7 @@
         policy = file("${path.module}/example-policy.json")
     } 
     ```
+#### 🔗 Referencias file()
+- [file Function](https://developer.hashicorp.com/terraform/language/functions/file)
 
 ---

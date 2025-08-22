@@ -44,10 +44,10 @@ resource "aws_apigatewayv2_api" "http_api" {
 # Integración Lambda ↔ API Gateway
 resource "aws_apigatewayv2_integration" "lambda_integration" {
   api_id                 = aws_apigatewayv2_api.http_api.id
-  integration_type       = "AWS_PROXY" # significa que el API Gateway va a mandar la petición “tal cual” a la Lambda (proxy integration).
+  integration_type       = "AWS_PROXY"                                   # significa que el API Gateway va a mandar la petición “tal cual” a la Lambda (proxy integration).
   integration_uri        = aws_lambda_function.lab_lambda_mvp.invoke_arn # ARN de la función Lambda que se invoca.
-  integration_method     = "POST" # API Gateway llama a Lambda con POST.
-  payload_format_version = "2.0" # versión moderna del formato de entrada/salida entre API Gateway y Lambda.
+  integration_method     = "POST"                                        # API Gateway llama a Lambda con POST.
+  payload_format_version = "2.0"                                         # versión moderna del formato de entrada/salida entre API Gateway y Lambda.
 }
 
 # Ruta POST /hola

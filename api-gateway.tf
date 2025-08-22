@@ -22,7 +22,7 @@ resource "aws_apigatewayv2_integration" "lambda_integration" {
 # Define la ruta /hello que invoca la integración Lambda.
 resource "aws_apigatewayv2_route" "route" {
   api_id    = aws_apigatewayv2_api.http_api.id
-  route_key = "GET /hello"  # Puedes cambiar la ruta
+  route_key = "GET /hello" # Puedes cambiar la ruta
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
 

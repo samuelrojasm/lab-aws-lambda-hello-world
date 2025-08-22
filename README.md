@@ -85,6 +85,15 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
     ```
 ---
 
+## Mejoras
+1. Versión extendida que permita
+    - GET /hola con query string
+    - Logs enriquecidos en CloudWatch
+    - Lambda tenga acceso a leer de S3
+    - Uso de variables de Terraform para bucket y stage
+
+---
+
 ## 📌 Notas
 > Este repo es **experimental**, no es un proyecto oficial de CyberNuclei.<br>
 > Se recomienda romper cosas y aprender de los errores 😎<br>

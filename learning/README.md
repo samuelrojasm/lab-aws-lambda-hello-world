@@ -166,8 +166,8 @@ flowchart TD
     K --> L[API Gateway envía respuesta al usuario]
 
     %% Leyenda
-    style F fill:#f9f,stroke:#333,stroke-width:2px
-    style H fill:#ff9,stroke:#333,stroke-width:2px
+    style F fill:#e0a3d2,stroke:#333,stroke-width:2px,color:black
+    style H fill:#f6e7a1,stroke:#333,stroke-width:2px,color:black
 ```
 
 **Detalles clave en este diagrama:**

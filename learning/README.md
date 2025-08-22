@@ -248,7 +248,7 @@ flowchart TD
     subgraph API_Gateway["API Gateway (HTTP API)"]
         API[aws_apigatewayv2_api]
         INT[aws_apigatewayv2_integration]
-        ROUTE[aws_apigatewayv2_route "POST /hola"]
+        ROUTE[aws_apigatewayv2_route<br>POST /hola]
         STAGE[aws_apigatewayv2_stage "lab_mvp"]
     end
 

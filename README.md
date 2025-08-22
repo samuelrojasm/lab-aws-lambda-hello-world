@@ -83,8 +83,6 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 > Se recomienda romper cosas y aprender de los errores 😎<br>
 > Este repo personal sirve como **sandbox** para probar ideas y aprender nuevas tecnologías.
 
----
-
 ## 🔗 Referencias
 - [CyberNuclei Labs](https://github.com/cybernuclei) → repos oficiales y demos públicas.
 

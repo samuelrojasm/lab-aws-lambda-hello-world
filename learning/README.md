@@ -1,6 +1,6 @@
 # 🧪 Diario de aprendizaje del lab: AWS Lambda + Terraform
 
-## Week 01
+## 🔥 Week 01
 
 ### ⚡ ¿Qué pasa si en solo modifico el archivo .tftpl y ejecuto terraform apply?
 - Cuando trabajas con `templatefile() + .tftpl`, Terraform genera el JSON en tiempo de ejecución antes de aplicar cambios.
@@ -232,5 +232,54 @@ flowchart TD
    - Si el rol **no tiene permisos**, falla.  
    - Si **sí tiene permisos**, los logs se guardan en **CloudWatch**.  
 5. La Lambda genera una **respuesta**, que pasa por API Gateway y regresa al **usuario**.  
+
+---
+
+### ⚡ Integración entre una función AWS Lambda y un API Gateway (tipo HTTP API).
+1. Creas el API HTTP.
+2. Lo integras con Lambda.
+3. Defines una ruta (POST /hola).
+4. Lo publicas en un stage (lab_mvp).
+5. Le das permiso a API Gateway para llamar a Lambda.
+
+#### Diagrama del flujo de integración entre una función AWS Lambda y un API Gateway
+```mermaid 
+flowchart TD
+    subgraph API_Gateway["API Gateway (HTTP API)"]
+        API[aws_apigatewayv2_api]
+        INT[aws_apigatewayv2_integration]
+        ROUTE[aws_apigatewayv2_route "POST /hola"]
+        STAGE[aws_apigatewayv2_stage "lab_mvp"]
+    end
+
+    subgraph Lambda["AWS Lambda"]
+        LAMBDA[aws_lambda_function.lab_lambda_mvp]
+        PERM[aws_lambda_permission]
+    end
+
+    API --> INT --> ROUTE --> STAGE
+    ROUTE -->|invoca| LAMBDA
+    STAGE -->|expone endpoint| API
+    PERM -->|permite invocar| LAMBDA
+```
+
+#### 🔗 Referencias políticas de AWS
+- []()
+
+---
+
+### ⚡ Texto
+- Texto
+
+#### 🔗 Referencias políticas de AWS
+- []()
+
+---
+
+### ⚡ Texto
+- Texto
+
+#### 🔗 Referencias políticas de AWS
+- []()
 
 ---

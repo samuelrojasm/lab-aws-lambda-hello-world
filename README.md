@@ -1,4 +1,4 @@
-# 🧪 Lab Personal: AWS Lambda + Terraform
+# 🧪 Lab Personal: AWS Lambda + API Gateway HTTP API + Terraform
 
 [![AWS](https://img.shields.io/badge/AWS-%23FF9900?logo=amazonaws&logoColor=white)](#)
 [![Terraform](https://img.shields.io/badge/IaC-Terraform-623CE4?logo=terraform&logoColor=white)](#)
@@ -74,8 +74,15 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 ---
 
 ## 🚀 Probar el funcionamiento del laboratorio (Outcome)
-### Terraform apply
-
+### Invocación con cURL
+- Una vez desplegado (terraform apply), copia la URL del output:
+    ```bash
+    curl -X POST "$(terraform output -raw api_invoke_url)"
+    ```
+- Respuesta esperada:
+    ```
+    "Hola desde Lambda con HTTP API!"
+    ```
 ---
 
 ## 📌 Notas

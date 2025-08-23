@@ -20,6 +20,7 @@
 - [Casos de uso de auto_deploy = false](#casos-auto-deploy-false)
 - [CORS - Cross-Origin Resource Sharing](#cors)
 - [Definición del "handler" de la Lambda](#handler)
+- [Cuándo Lambda es buena idea](#usos_lambda)
 
 ---
 
@@ -381,4 +382,57 @@ flowchart LR
     ```hcl
     handler = "lambda_function.lambda_handler"
     ```
+---
+
+### Cuándo Lambda es buena idea <a name="usos_lambda"></a>
+- AWS Lambda es muy útil para aplicaciones **event-driven** o con **carga variable moderada**, pero en casos de alta demanda constante y crítica, como una API de banco, pueden aparecer problemas en alta demanda:
+    - Concurrency limitado
+        - El límite por defecto (1,000 concurrentes) puede saturarse → errores 429.
+        - Incluso con **provisioned concurrency**, hay un límite físico por región y cuenta.
+    - Cold starts
+        - Cada nueva instancia tarda un tiempo en arrancar.
+        - En aplicaciones financieras, cada milisegundo cuenta, y la latencia adicional puede afectar la experiencia del usuario.
+    - Dependencias externas
+        - Bases de datos, caches o servicios externos pueden volverse cuello de botella aunque Lambda escale.
+    - Costos
+        - En cargas muy altas, el modelo de pago por ejecución puede salir más caro que una infraestructura fija bien dimensionada.
+- Cuándo Lambda es buena idea
+    - Funciones pequeñas, event-driven. 
+    - Cargas variables con picos temporales.
+    - Integración rápida sin gestionar servidores.
+- Cuándo considerar otras opciones
+    - APIs de misión crítica con alta y constante demanda.
+    - Latencia mínima requerida (milisegundos).
+    - Operaciones que requieren mucha CPU o memoria constante.
+En esos casos, a veces ECS, EKS o instancias EC2/auto-scaling pueden ser más predecibles y confiables.
+#### Comparativo de Lambda vs EC2/ECS para APIs críticas,
+- Comparativo de Lambda vs EC2/ECS para APIs críticas, mostrando pros y contras en alta demanda para bancos. 
+- Esto ayuda mucho para tomar decisiones de arquitectura: 
+
+**Escenario: API de banco con alta demanda**
+
+| Característica                 | AWS Lambda                                                                             | EC2 / ECS / EKS                                            |
+| ------------------------------ | -------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **Escalabilidad automática**   | Sí, hasta el límite de concurrency (por defecto 1,000)                                 | Sí, mediante Auto Scaling (más control sobre límites)      |
+| **Cold starts / Latencia**     | Puede haber cold starts, latencia adicional en cada arranque                           | Ninguno si las instancias están corriendo permanentemente  |
+| **Control de recursos**        | Memoria configurable (CPU proporcional)                                                | CPU, RAM, I/O totalmente configurables por instancia       |
+| **Persistencia / Estado**      | Stateless, requiere servicios externos para estado                                     | Stateful posible, acceso directo a discos locales y caches |
+| **Dependencias externas**      | Bases de datos y caches pueden ser cuello de botella                                   | Igual, pero escalabilidad más predecible con Auto Scaling  |
+| **Costos**                     | Pago por ejecución (muy eficiente en cargas variables, caro en alta demanda constante) | Pago por instancias, más predecible en alta carga continua |
+| **Mantenimiento**              | Muy bajo, serverless                                                                   | Medio-alto, requiere gestión de instancias / contenedores  |
+| **Tiempo máximo de ejecución** | 15 minutos                                                                             | Ilimitado según configuración de servicio                  |
+
+**Observaciones clave**
+- Lambda:
+    - Ideal para picos event-driven o funciones pequeñas y rápidas.
+    - Riesgo: concurrency limitado, cold starts, dependencia de servicios externos.
+- EC2/ECS/EKS
+    - Ideal para APIs críticas con alta demanda constante.
+    - Permite más control sobre recursos, latencia y escalabilidad predecible.
+    - Requiere gestión de instancias, Auto Scaling y monitoreo.
+
+**Estrategias mixtas**
+- Lambda para tareas **event-driven** o batch (notificaciones, procesamiento de transacciones pequeñas).
+- ECS/EKS para endpoints críticos con alta concurrencia, donde la latencia mínima y estabilidad son prioritarias.
+
 ---

@@ -86,18 +86,29 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
     ```
 ### 2. Ejecución de terraform init
 <p align="center">
-    <img src="imagenes/tf-init.png" alt="Variables" width="70%">
+    <img src="imagenes/tf-init.png" alt="tf-init" width="70%">
 </p>
 
 ### 3. Ejecución de terraform plan
 - La imagen muestra uan parte del resultado:
 <p align="center">
-    <img src="imagenes/tf-plan.png" alt="Variables" width="80%">
+    <img src="imagenes/tf-plan.png" alt="tf-plan" width="80%">
 </p>
 
 ### 4. Ejecución de terraform apply
 <p align="center">
-    <img src="imagenes/tf-apply.png" alt="Variables" width="80%">
+    <img src="imagenes/tf-apply.png" alt="tf-apply" width="80%">
+</p>
+
+### 5. Verificar en consola de AWS
+- Diagrama de componentes de la Lambda:
+<p align="center">
+    <img src="imagenes/lambda.png" alt="lambda" width="80%">
+</p>
+
+- API Integrations
+<p align="center">
+    <img src="imagenes/api-integrations.png" alt="api-integrations" width="80%">
 </p>
 
 ### 6. Invocación con cURL
@@ -106,9 +117,16 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
     curl -X POST "$(terraform output -raw api_invoke_url)"
     ```
 - Respuesta esperada:
-    ```
-    "Hola desde Lambda con HTTP API!"
-    ```
+<p align="center">
+    <img src="imagenes/curl.png" alt="cURL" width="80%">
+</p>
+
+### 7. Ejecución de terraform destroy
+<p align="center">
+    <img src="imagenes/tf-destroy.png" alt="tf-destroy" width="80%">
+</p>
+
+
 ---
 
 ## ⚡ Mejoras

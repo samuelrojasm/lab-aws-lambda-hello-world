@@ -117,6 +117,31 @@ graph TD
     C2 --> R1
 ```
 
+```mermaid
+mindmap
+  root((Proyecto Terraform: Lambda + API))
+    providers.tf
+      :::desc define proveedor AWS
+    terraform.tf
+      :::desc required_providers
+    variables.tf
+      :::desc declara variables
+      terraform.tfvars
+        :::desc valores de variables
+    main.tf
+      :::desc recursos principales
+      AMI
+      Lambda
+        lambda_function.py
+        assume-role-policy.json
+        lambda-permissions-policy.json
+      API Gateway
+        Integración WAF
+        Auth (IAM/Cognito)
+    outputs.tf
+      :::desc exporta valores
+```
+
 ---
 
 ## 🚀 Probar el funcionamiento del laboratorio (Outcome)

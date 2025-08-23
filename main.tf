@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "lambda_policy_attach" {
 # -----------------------------
 data "archive_file" "lambda_zip" {
   type        = "zip"
-  source_file = "lambda-function.py"
+  source_file = "lambda_function.py"
   output_path = "lambda_function_payload.zip"
 }
 
@@ -41,7 +41,7 @@ data "archive_file" "lambda_zip" {
 # ----------------------
 resource "aws_lambda_function" "lab_lambda_mvp" {
   function_name    = var.lambda_name
-  handler          = "main.lambda_handler"
+  handler          = "lambda_function.lambda_handler"
   runtime          = var.python_runtime
   role             = aws_iam_role.lambda_role.arn
   filename         = data.archive_file.lambda_zip.output_path

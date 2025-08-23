@@ -89,7 +89,10 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
     <img src="imagenes/tf-init.png" alt="Variables" width="70%">
 </p>
 
-
+### 3. Ejecución de terraform plan
+<p align="center">
+    <img src="imagenes/tf-plan.png" alt="Variables" width="70%">
+</p>
 
 
 ### Invocación con cURL

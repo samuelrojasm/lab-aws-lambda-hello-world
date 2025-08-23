@@ -384,7 +384,7 @@ flowchart LR
     ```
 ---
 
-### Cuándo Lambda es buena idea <a name="usos_lambda"></a>
+### ⚡ Cuándo Lambda es buena idea <a name="usos_lambda"></a>
 - AWS Lambda es muy útil para aplicaciones **event-driven** o con **carga variable moderada**, pero en casos de alta demanda constante y crítica, como una API de banco, pueden aparecer problemas en alta demanda:
     - Concurrency limitado
         - El límite por defecto (1,000 concurrentes) puede saturarse → errores 429.

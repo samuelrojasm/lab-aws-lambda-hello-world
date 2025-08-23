@@ -127,7 +127,6 @@ flowchart TD
     <img src="imagenes/tf-destroy.png" alt="tf-destroy" width="80%">
 </p>
 
-
 ---
 
 ## ⚡ Mejoras posibles de este Minimum Viable Product de Lambda + API

@@ -130,7 +130,7 @@ flowchart TD
 
 ---
 
-## ⚡ Mejoras
+## ⚡ Mejoras posibles de este Minimum Viable Product de Lambda + API
 1. Versión extendida next-level 1
 - Mejoras:
     - GET /hola con query string 

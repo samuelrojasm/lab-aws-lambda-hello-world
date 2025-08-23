@@ -51,12 +51,8 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ---
 
-## 🛠️ Pasos de creción de Lab
-### 1.Inicio de sesión con AWS SSO en la CLI
-- Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el navegador para autenticarte y guarda credenciales temporales.
-    ```bash
-    aws sso login --profile tf
-    ```
+## 🛠️ Archivos principales del proyecto
+
 ### 1. Código de la función Lambda
 - El código es simple, escrito en **Python** (uno de los lenguajes más comunes para Lambda).
 - La función recibe un evento (un diccionario) y un contexto de ejecución.
@@ -122,6 +118,7 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 </p>
 
 ### 7. Ejecución de terraform destroy
+- La imagen muestra una parte del resultado:
 <p align="center">
     <img src="imagenes/tf-destroy.png" alt="tf-destroy" width="80%">
 </p>

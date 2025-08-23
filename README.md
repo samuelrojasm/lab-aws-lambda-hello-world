@@ -43,14 +43,6 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ---
 
-## 💡 Notas de aprendizaje
-- Cada cambio importante se documenta en `learning/`.
-    - `learning/README.md`: Registro de avances semanales.
-    - `learning/experiments/`: Scripts de prueba que no entran en el repo oficial.
-    - `learning/cheatsheets/`: Comandos útiles y mini-guías para referencia rápida.
-
----
-
 ## 🛠️ Estructura de Archivos del Proyecto (Terraform + Lambda + API Gateway)
 
 | Archivo                        | Contenido principal                                                                                   |
@@ -82,64 +74,6 @@ flowchart TD
         H[lambda-permissions-policy.json] -->|Define| H1[Política permisos Lambda]
         I[lambda_function.py] -->|Código| I1[Lógica Lambda en Python]
     end
-```
-
-```mermaid
-graph TD
-    A[Proyecto Terraform + Lambda + API Gateway]
-
-    %% Raíz
-    A --> B[Archivos Terraform]
-    A --> C[Código Lambda]
-
-    %% Bloque Terraform
-    B --> B1[main.tf]
-    B --> B2[variables.tf]
-    B --> B3[terraform.tfvars]
-    B --> B4[outputs.tf]
-
-    %% Dependencias
-    B2 --> B1
-    B3 --> B1
-    B4 --> B1
-
-    %% Recursos definidos en main.tf
-    B1 --> R1[Lambda Function]
-    B1 --> R2[API Gateway]
-    B1 --> R3[IAM Roles/Policies]
-
-    %% Bloque Lambda
-    C --> C1[handler.py]
-    C --> C2[requirements.txt]
-
-    %% Dependencias de Lambda
-    C1 --> R1
-    C2 --> R1
-```
-
-```mermaid
-mindmap
-  root((Proyecto Terraform: Lambda + API))
-    providers.tf
-      :::desc define proveedor AWS
-    terraform.tf
-      :::desc required_providers
-    variables.tf
-      :::desc declara variables
-      terraform.tfvars
-        :::desc valores de variables
-    main.tf
-      :::desc recursos principales
-      AMI
-      Lambda
-        lambda_function.py
-        assume-role-policy.json
-        lambda-permissions-policy.json
-      API Gateway
-        Integración WAF
-        Auth (IAM/Cognito)
-    outputs.tf
-      :::desc exporta valores
 ```
 
 ---
@@ -244,6 +178,14 @@ mindmap
 | **IAM Auth**     | Acceso desde apps internas, microservicios, Lambda, CI/CD con credenciales AWS | Muy fuerte (firmas SigV4, control IAM)    |
 | **Cognito Auth** | Acceso desde usuarios finales (web, móviles) con login y JWT                   | Flexible, más amigable para apps públicas |
 | **Sin auth**     | Endpoint público (ej. webhook)                                                 | Riesgoso, cualquiera puede invocar        |
+
+---
+
+## 💡 Notas de aprendizaje
+- Cada cambio importante se documenta en `learning/`.
+    - `learning/README.md`: Registro de avances semanales.
+    - `learning/experiments/`: Scripts de prueba que no entran en el repo oficial.
+    - `learning/cheatsheets/`: Comandos útiles y mini-guías para referencia rápida.
 
 ---
 

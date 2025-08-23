@@ -19,6 +19,7 @@
 - [Auto deploy en Stage de API Gateway](#auto-deploy-api-gateway)
 - [Casos de uso de auto_deploy = false](#casos-auto-deploy-false)
 - [CORS - Cross-Origin Resource Sharing](#cors)
+- [Definición del "handler" de la Lambda](#handler)
 
 ---
 
@@ -368,4 +369,16 @@ flowchart LR
 - [Amazon API Gateway – Soporte de CORS](https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-cors.html)
 - [Guía completa sobre CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS)
 
+---
+
+###  ⚡ Definición del "handler" de la Lambda <a name="handler"></a>
+- Lambda no permite guiones - en el nombre del módulo.
+- El archivo del código en Python debe de tener underscore (_)
+    ```bash
+    lambda_function.py
+    ```
+- En la defición de la Lambda ("aws_lambda_function") se define el "handler" = módulo(nombre del archivo python) + función(dentro del código python)
+    ```hcl
+    handler = "lambda_function.lambda_handler"
+    ```
 ---

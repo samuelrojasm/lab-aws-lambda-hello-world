@@ -80,7 +80,7 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ## 🚀 Probar el funcionamiento del laboratorio (Outcome)
 ### 1. Inicio de sesión con AWS SSO en la CLI
-Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el navegador para autenticarte y guarda credenciales temporales.
+- Iniciar sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el navegador para autenticarte y guarda credenciales temporales.
     ```bash
     aws sso login --profile tf
     ```
@@ -90,7 +90,7 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
 </p>
 
 ### 3. Ejecución de terraform plan
-- La imagen muestra uan parte del resultado:
+- La imagen muestra una parte del resultado:
 <p align="center">
     <img src="imagenes/tf-plan.png" alt="tf-plan" width="80%">
 </p>
@@ -103,12 +103,12 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
 ### 5. Verificar en consola de AWS
 - Diagrama de componentes de la Lambda:
 <p align="center">
-    <img src="imagenes/lambda.png" alt="lambda" width="80%">
+    <img src="imagenes/lambda.png" alt="lambda" width="70%">
 </p>
 
-- API Integrations
+- API Integrations:
 <p align="center">
-    <img src="imagenes/api-integrations.png" alt="api-integrations" width="80%">
+    <img src="imagenes/api-integrations.png" alt="api-integrations" width="70%">
 </p>
 
 ### 6. Invocación con cURL
@@ -118,7 +118,7 @@ Inicia sesión en AWS IAM Identity Center (SSO) usando el perfil tf, abre el nav
     ```
 - Respuesta esperada:
 <p align="center">
-    <img src="imagenes/curl.png" alt="cURL" width="80%">
+    <img src="imagenes/curl.png" alt="cURL" width="70%">
 </p>
 
 ### 7. Ejecución de terraform destroy

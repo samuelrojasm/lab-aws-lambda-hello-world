@@ -51,26 +51,39 @@ Aquí guardo pruebas, errores, descubrimientos y notas de aprendizaje, sin preoc
 
 ---
 
-## 🛠️ Archivos principales del proyecto
+## 🛠️ Estructura de Archivos del Proyecto (Terraform + Lambda + API Gateway)
 
-### 1. Código de la función Lambda
-- El código es simple, escrito en **Python** (uno de los lenguajes más comunes para Lambda).
-- La función recibe un evento (un diccionario) y un contexto de ejecución.
-- `lambda_handler`: Este es el nombre de la función que Lambda ejecutará. 
-    - `event` es un diccionario que contiene los datos de entrada.
-    - `context` contiene información sobre la invocación.
-- `event.get('name', 'Mundo')`: Busca una clave llamada name en el diccionario event. Si no la encuentra, usa el valor por defecto `'Mundo'`.
+| Archivo                        | Contenido principal                                                                                   |
+|--------------------------------|-------------------------------------------------------------------------------------------------------|
+| **main.tf**                    | - Declaración de recursos principales:<br> • Lambda function<br>  • API Gateway (HTTP API)<br>  • Roles y permisos mínimos necesarios |
+| **outputs.tf**                 | - Definición de salidas útiles:<br>  • URL del endpoint HTTP API<br>  • Nombre/ARN de la función Lambda<br>  • ID de la VPC o Subnet (si aplica) |
+| **providers.tf**               | - Configuración del proveedor AWS:<br>  • `provider "aws" { region = var.region ... }`<br>  • Opcional: configuración de perfiles/assume role |
+| **terraform.tf**               | - Definición de versiones y proveedores requeridos:<br>  • `required_version` de Terraform<br>  • `required_providers` (ej. AWS) |
+| **terraform.tfvars**           | - Valores concretos de variables:<br>  • Región (`region`)<br>  • Nombre de función Lambda<br>  • Rutas del API<br>  • AMI a usar (si aplica) |
+| **variables.tf**               | - Declaración de variables reutilizables:<br>  • `variable "region"`<br>  • `variable "lambda_name"`<br>  • `variable "api_name"`<br>  • Parámetros de red (si aplica) |
+| **assume-role-policy.json**    | - Política JSON de confianza para el rol de ejecución Lambda:<br>  • Define quién puede asumir el rol (ej. `lambda.amazonaws.com`) |
+| **lambda-permissions-policy.json** | - Política JSON de permisos para la Lambda:<br>  • Permisos de logs en CloudWatch<br>  • Acceso a servicios que la Lambda necesite (ej. S3, DynamoDB, etc.) |
+| **lambda_function.py**         | - Código de la función Lambda en Python:<br>  • Handler principal (`def lambda_handler(event, context)`) que procesa requests del API Gateway |
 
-### 2. Configurar la infraestructura base** con Terraform. 
+- Diagrama de Archivos y Roles en el Proyecto
+    - Este diagrama refleja cómo cada archivo tiene un rol dentro del proyecto: desde la infraestructura (Terraform) hasta la lógica de negocio (Lambda).
+```mermaid
+flowchart TD
 
-
-### 3. Implementar el servicio principal (AWS Lambda).
-
-
-### 4. Agregar integraciones necesarias** (API Gateway, IAM).
-
-
-### 5. Configurar la infraestructura base** con Terraform. 
+    subgraph Terraform_Project["📂 Proyecto Terraform"]
+        A[main.tf] -->|Define recursos| A1[AMI]
+        A --> A2[Lambda Function]
+        A --> A3[API Gateway HTTP API]
+        B[outputs.tf] -->|Exporta| B1[Valores de salida]
+        C[providers.tf] -->|Configura| C1[AWS Provider]
+        D[terraform.tf] -->|Define| D1[required_providers]
+        E[terraform.tfvars] -->|Contiene| E1[Valores de variables]
+        F[variables.tf] -->|Declara| F1[Variables de entrada]
+        G[assume-role-policy.json] -->|Define| G1[Política de confianza IAM]
+        H[lambda-permissions-policy.json] -->|Define| H1[Política permisos Lambda]
+        I[lambda_function.py] -->|Código| I1[Lógica Lambda en Python]
+    end
+```
 
 ---
 
